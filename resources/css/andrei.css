@@ -1,0 +1,80 @@
+* {
+    font-size: 16px;
+}
+
+.smaller-875rem * {
+    font-size: .875rem !important;
+    /* 0.875rem = 14px if root is 16px */
+    line-height: 1.2
+        /* adjust as you like */
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+.culoare1 {
+    color: white;
+    background-color: #703B3B !important;
+}
+
+.culoare1-border {
+    border-color: #703B3B !important;
+}
+
+/* .culoare2 {
+    color: white;
+    background-color: #d85c27; */
+/* } */
+.culoare2 {
+    color: white;
+    background-color: #C9B59C !important;
+}
+
+.culoare3 {
+    color: white;
+    background-color: #141850 !important;
+}
+
+.culoare4 {
+    color: white;
+    background-color: #f5cac2 !important;
+}
+
+
+/* For navlinks buttons */
+.nav-link {
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+/* .nav-link.active {
+    color: white !important;
+    box-shadow: 0 1px 0px rgba(255, 255, 255, 1);
+    border-radius: 5px;
+} */
+.nav-link.dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.preserve-newlines {
+    white-space: pre-wrap; /* preserves whitespace and wraps text */
+}
+
+
+.table tr.bg-danger td {
+    background-color: #f8d7da !important;
+}
+.table tr.bg-warning td {
+    background-color: #fff3cd !important;
+}
+.table tr.bg-success td {
+    background-color: #d4edda !important;
+}
+.table tr.bg-light td {
+    background-color: #f8f9fa !important;
+}
