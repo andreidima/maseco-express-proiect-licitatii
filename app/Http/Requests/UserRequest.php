@@ -22,21 +22,22 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'role' => 'required',
+            'role' => 'required|in:SuperAdmin,Admin,Operator,Participant licitatii',
             'name' => 'required|max:255',
             'telefon' => 'nullable|max:50',
             'email' => 'required|max:255|email:rfc,dns|unique:users,email,' . $this->route('user')?->id,
             'password' => ($this->isMethod('POST') ? 'required' : 'nullable') . '|min:8|max:255|confirmed',
             'activ' => 'required',
+            'carrier_id' => 'nullable|exists:ltm_carriers,id|required_if:role,Participant licitatii',
         ];
     }
 
     public function messages()
     {
         return [
-            'password.required' => 'Câmpul parola este obligatoriu.',
-            'password.min' => 'Parola trebuie să aibă minim 8 caractere.',
-            'password.max' => 'Câmpul parola nu poate conține mai mult de 255 de caractere.',
+            'password.required' => __('validation.custom.password.required'),
+            'password.min' => __('validation.custom.password.min'),
+            'password.max' => __('validation.custom.password.max'),
         ];
     }
 }

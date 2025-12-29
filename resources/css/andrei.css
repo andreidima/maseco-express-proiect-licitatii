@@ -15,11 +15,11 @@
 
 .culoare1 {
     color: white;
-    background-color: #703B3B !important;
+    background-color: #00a1a1 !important;
 }
 
 .culoare1-border {
-    border-color: #703B3B !important;
+    border-color: #00a1a1 !important;
 }
 
 /* .culoare2 {
@@ -77,4 +77,268 @@
 }
 .table tr.bg-light td {
     background-color: #f8f9fa !important;
+}
+
+/* Colorful headers for LTM record listings */
+.ltm-records-table thead {
+    background: linear-gradient(120deg,
+        #d97706 0%,
+        #f59e0b 50%,
+        #d97706 100%);
+    color: #f8fbff;
+    border-bottom: none;
+}
+
+.ltm-records-table thead th {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.18);
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.ltm-records-table thead th:first-child {
+    border-top-left-radius: 0.35rem;
+}
+
+.ltm-records-table thead th:last-child {
+    border-top-right-radius: 0.35rem;
+}
+
+/* LTM dashboard styling */
+.ltm-panou-body {
+    background:
+        radial-gradient(circle at 12% 18%, rgba(0, 161, 161, 0.16), transparent 32%),
+        radial-gradient(circle at 88% 12%, rgba(255, 179, 64, 0.16), transparent 28%),
+        radial-gradient(circle at 20% 82%, rgba(91, 33, 182, 0.12), transparent 30%),
+        #f7fbfb;
+}
+
+.ltm-panou-main {
+    background: transparent;
+}
+
+.ltm-hero {
+    background: linear-gradient(120deg, #00a1a1 0%, #00c6c0 50%, #008b8b 100%);
+    color: #e9fffd;
+}
+
+.ltm-hero p {
+    color: #e9fffd;
+}
+
+.ltm-hero .badge {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #005e5e;
+    border: 1px solid rgba(0, 161, 161, 0.2);
+}
+
+.ltm-hero .btn {
+    background-color: #ffffff;
+    color: #007d7d;
+    border: none;
+}
+
+.ltm-hero .btn:hover {
+    background-color: #e6fbfb;
+    color: #005e5e;
+}
+
+.ltm-dashboard .card {
+    background-color: #ffffff;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 161, 161, 0.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+}
+
+.ltm-dashboard .card-header {
+    background: linear-gradient(90deg, rgba(0, 161, 161, 0.12), rgba(0, 161, 161, 0));
+    border-bottom: none;
+}
+
+.ltm-dashboard h5,
+.ltm-dashboard h6 {
+    color: #0f3d3d;
+}
+
+.ltm-kpi-card {
+    color: #ffffff;
+    border: none !important;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ltm-kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.15);
+}
+
+.ltm-kpi-label {
+    color: rgba(255, 255, 255, 0.86);
+    letter-spacing: 0.2px;
+}
+
+.ltm-kpi-value {
+    color: #ffffff;
+}
+
+.ltm-kpi-card--teal {
+    background: linear-gradient(135deg, #00a1a1 0%, #00c6c0 100%);
+}
+
+.ltm-kpi-card--blue {
+    background: linear-gradient(135deg, #2f80ed 0%, #56ccf2 100%);
+}
+
+.ltm-kpi-card--green {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.ltm-kpi-card--amber {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.ltm-kpi-card--cobalt {
+    background: linear-gradient(135deg, #3a7bd5 0%, #00d2ff 100%);
+}
+
+.ltm-kpi-card--coral {
+    background: linear-gradient(135deg, #f53844 0%, #ff9a9e 100%);
+}
+
+.ltm-kpi-card--emerald {
+    background: linear-gradient(135deg, #009a7a 0%, #1bd1a5 100%);
+}
+
+.ltm-kpi-card--violet {
+    background: linear-gradient(135deg, #5b21b6 0%, #8b5cf6 100%);
+}
+
+.home-dashboard {
+    background:
+        radial-gradient(circle at 10% 10%, rgba(14, 165, 233, 0.25), transparent 40%),
+        radial-gradient(circle at 80% 0%, rgba(236, 72, 153, 0.2), transparent 45%),
+        #f8fafc;
+    border-radius: 20px;
+    padding: clamp(1.5rem, 2vw, 2.25rem);
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.1);
+}
+
+.home-hero {
+    border-radius: 22px;
+    background: linear-gradient(135deg, #0f172a, #0f6ba5);
+    color: #f8fafc;
+    overflow: hidden;
+}
+
+.home-hero .card-body {
+    background: transparent;
+}
+
+.home-hero-badge {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.8rem;
+    font-weight: 600;
+}
+
+.home-kpi-grid .col-lg-3 {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.home-kpi-grid .col-lg-3:nth-child(1) { animation-delay: 0.05s; }
+.home-kpi-grid .col-lg-3:nth-child(2) { animation-delay: 0.1s; }
+.home-kpi-grid .col-lg-3:nth-child(3) { animation-delay: 0.15s; }
+.home-kpi-grid .col-lg-3:nth-child(4) { animation-delay: 0.2s; }
+.home-kpi-grid .col-lg-3:nth-child(5) { animation-delay: 0.25s; }
+
+.home-kpi-card {
+    border-radius: 18px;
+    color: white;
+    min-height: 150px;
+}
+
+.home-kpi-card .card-body {
+    background: transparent;
+}
+
+.home-kpi-card--teal {
+    background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+}
+
+.home-kpi-card--violet {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+.home-kpi-card--amber {
+    background: linear-gradient(135deg, #f97316, #fb923c);
+}
+
+.home-kpi-card--blue {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.home-kpi-card--green {
+    background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+.home-kpi-label {
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.home-kpi-value {
+    font-size: 2.1rem;
+    font-weight: 700;
+}
+
+.home-kpi-note {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.home-charts-row .col-lg-4,
+.home-charts-row .col-lg-6 {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.home-chart-card {
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.home-chart-card .card-body {
+    background: transparent;
+}
+
+.home-chart-card .card-header {
+    border-bottom: none;
+}
+
+.home-chart-card canvas {
+    width: 100% !important;
+    max-height: 260px;
+}
+
+.home-list-card {
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.home-list-card .card-body {
+    min-height: 180px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

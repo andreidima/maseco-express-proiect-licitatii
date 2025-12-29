@@ -1,100 +1,131 @@
 @extends('layouts.app')
 
+@section('body-class', 'login-body')
+@section('main-class', 'login-main')
+
 @section('content')
-<div class="container" style="">
-    <div class="row py-5 justify-content-center">
-        <div class="card col-lg-3 p-0 shadow border culoare1-border">
-            <div class="card-header culoare1">
-                <div class="row">
-                    <div class="col-lg-12 text-center fs-5">
-                        {{ config('app.name', 'Laravel') }}
+<div class="login-page position-relative overflow-hidden">
+    <div class="login-aurora aurora-1"></div>
+    <div class="login-aurora aurora-2"></div>
+    <div class="login-aurora aurora-3"></div>
+    <div class="login-grid"></div>
+
+    <div class="container py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-white">
+                <div class="d-inline-flex align-items-center gap-2 login-badge mb-3">
+                    <span class="badge-dot"></span>
+                    <span class="fw-semibold text-uppercase small">{{ __('pages/login.badge') }}</span>
+                </div>
+                <h1 class="display-5 fw-bold mb-3">
+                    {{ __('pages/login.headline') }}
+                </h1>
+                <p class="lead text-white-50 mb-4">
+                    {{ __('pages/login.lead') }}
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="login-metric">
+                        <span class="label">{{ __('pages/login.metric_1_label') }}</span>
+                        <span class="value">{{ __('pages/login.metric_1_value') }}</span>
+                    </div>
+                    <div class="login-metric">
+                        <span class="label">{{ __('pages/login.metric_2_label') }}</span>
+                        <span class="value">{{ __('pages/login.metric_2_value') }}</span>
                     </div>
                 </div>
             </div>
 
-            <div class="card-body pb-0">
-                @include ('errors.errors')
+            <div class="col-lg-5 col-xl-4 ms-lg-auto">
+                <div class="glass-card shadow-lg border-0">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="login-logo fw-bold">ME</div>
+                        <div class="ms-3">
+                            <p class="text-uppercase text-white-50 small mb-1">{{ __('pages/login.your_account') }}</p>
+                            <h2 class="h5 text-white mb-0">{{ __('pages/login.enter_app') }}</h2>
+                        </div>
+                    </div>
 
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text culoare1" id="inputGroupPrepend2">
-                                    <i class="fas fa-user culoare1"></i>
+                    @include ('errors.errors')
+
+                    <form method="POST" action="{{ route('login') }}" class="login-form">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="email" class="form-label text-white-50 mb-1">
+                                {{ __('auth.E-Mail Address') }}
+                            </label>
+                            <div class="input-group login-input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-user"></i>
                                 </span>
-                                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" autofocus
+                                <input
+                                    id="email"
+                                    type="email"
+                                    class="form-control login-input @error('email') is-invalid @enderror"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    autocomplete="email"
+                                    autofocus
                                     placeholder="{{ __('auth.E-Mail Address') }}"
                                 >
                             </div>
                             @error('email')
-                                <span class="text-danger" role="alert">
+                                <span class="text-danger small" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <div class="input-group">
-                                <span class="input-group-text culoare1" id="inputGroupPrepend2">
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label text-white-50 mb-1">
+                                {{ __('auth.Password') }}
+                            </label>
+                            <div class="input-group login-input-group">
+                                <span class="input-group-text">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password"
+                                <input
+                                    id="password"
+                                    type="password"
+                                    class="form-control login-input @error('password') is-invalid @enderror"
+                                    name="password"
+                                    autocomplete="current-password"
                                     placeholder="{{ __('auth.Password') }}"
                                 >
                             </div>
                             @error('password')
-                                <span class="text-danger" role="alert">
+                                <span class="text-danger small" role="alert">
                                     {{ $message }}
                                 </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 text-center d-grid gap-2 mx-auto">
-                            <div class="d-flex justify-content-center my-0">
-                                <div class="form-check d-inline-block">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('auth.Remember Me') }}
-                                    </label>
-                                </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                            <div class="form-check text-white-50">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('auth.Remember Me') }}
+                                </label>
                             </div>
-
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-7 d-grid gap-2 mx-auto">
-                            <button type="submit" class="btn text-white mb-2 fs-5 shadow-sm rounded-3"
-                                style="background-color:#56af71"
-                            >
-                                {{ __('auth.Login') }}
-                            </button>
-                        </div>
-                    </div>
-
-                    @if (Route::has('password.request'))
-                        <div class="row mb-2">
-                            <div class="col-md-12 text-center">
-                                <hr>
-                                <a class="btn btn-link p-0 m-0 border-0" href="{{ route('password.request') }}">
+                            @if (Route::has('password.request'))
+                                <a class="link-light link-opacity-75-hover text-decoration-none" href="{{ route('password.request') }}">
                                     {{ __('auth.Forgot Your Password?') }}
                                 </a>
-                            </div>
+                            @endif
                         </div>
-                    @endif
 
-                    @if (Route::has('register'))
-                        <div class="row mb-2">
-                            <div class="col-md-12 text-center">
-                                Nu ai cont?
-                                <a class="" href="{{ route('register') }}">Înregistrează-te</a>
-                            </div>
-                        </div>
-                    @endif
+                        <button type="submit" class="btn w-100 login-btn">
+                            <span>{{ __('auth.Login') }}</span>
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
 
-                </form>
+                        @if (Route::has('register'))
+                            <p class="text-center text-white-50 mt-3 mb-0">
+                                {{ __('pages/login.no_account') }}
+                                <a class="link-light fw-semibold text-decoration-none" href="{{ route('register') }}">{{ __('pages/login.register') }}</a>
+                            </p>
+                        @endif
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -173,8 +173,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'password' => [
+            'required' => 'Password is required.',
+            'min' => 'Password must be at least :min characters.',
+            'max' => 'Password may not be greater than :max characters.',
         ],
     ],
 

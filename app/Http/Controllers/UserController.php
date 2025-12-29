@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Models\Ltm\Carrier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,7 +47,9 @@ class UserController extends Controller
     {
         $request->session()->get('returnUrl') ?: $request->session()->put('returnUrl', url()->previous());
 
-        return view('users.save');
+        $carriers = Carrier::orderBy('name')->get();
+
+        return view('users.save', compact('carriers'));
     }
 
     /**
@@ -63,7 +66,8 @@ class UserController extends Controller
 
         $user = User::create($data);
 
-        return redirect($request->session()->get('returnUrl', route('users.index')))->with('success', 'Utilizatorul <strong>' . e($user->name) . '</strong> a fost adăugat cu succes!');
+        return redirect($request->session()->get('returnUrl', route('users.index')))
+            ->with('success', __('flash.user_added', ['name' => e($user->name)]));
     }
 
     /**
@@ -75,6 +79,8 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         $request->session()->get('returnUrl') ?: $request->session()->put('returnUrl', url()->previous());
+
+        $user->load('carrier');
 
         return view('users.show', compact('user'));
     }
@@ -89,7 +95,9 @@ class UserController extends Controller
     {
         $request->session()->get('returnUrl') ?: $request->session()->put('returnUrl', url()->previous());
 
-        return view('users.save', compact('user'));
+        $carriers = Carrier::orderBy('name')->get();
+
+        return view('users.save', compact('user', 'carriers'));
     }
 
     /**
@@ -112,7 +120,7 @@ class UserController extends Controller
         $user->update($data);
 
         return redirect($request->session()->get('returnUrl', route('users.index')))
-            ->with('status', 'Utilizatorul <strong>' . e($user->name) . '</strong> a fost modificat cu succes!');
+            ->with('status', __('flash.user_updated', ['name' => e($user->name)]));
     }
 
     /**
@@ -125,6 +133,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return back()->with('status', 'Utilizatorul <strong>' . e($user->name) . '</strong> a fost șters cu succes!');
+        return back()->with('status', __('flash.user_deleted', ['name' => e($user->name)]));
     }
 }

@@ -3,7 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Ltm\Carrier;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'activ',
         'role',
         'telefon',
+        'carrier_id',
     ];
 
     /**
@@ -57,5 +60,25 @@ class User extends Authenticatable
             'destroy' => route('users.destroy', $this->id),
             default => route('users.show', $this->id),
         };
+    }
+
+    public function carrier()
+    {
+        return $this->belongsTo(Carrier::class, 'carrier_id');
+    }
+
+    public function supportThreads(): HasMany
+    {
+        return $this->hasMany(SupportThread::class, 'participant_user_id');
+    }
+
+    public function assignedSupportThreads(): HasMany
+    {
+        return $this->hasMany(SupportThread::class, 'admin_user_id');
+    }
+
+    public function supportMessages(): HasMany
+    {
+        return $this->hasMany(SupportMessage::class, 'sender_id');
     }
 }

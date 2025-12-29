@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'index_title' => 'Transportatori',
+    'index_subtitle' => 'Rețea de transportatori și subcontractori',
+    'add_button' => 'Adaugă transportator',
+    'badge_total' => 'Total transportatori: <strong>:count</strong>',
+    'badge_with_contracts' => 'Cu contracte: <strong>:count</strong>',
+    'badge_with_bids' => 'Cu oferte: <strong>:count</strong>',
+
+    'filter_name' => 'Nume',
+    'filter_cui' => 'CUI',
+    'filter_registration_number' => 'Nr. înregistrare',
+    'filter_contact_person' => 'Persoană contact',
+    'filter_phone' => 'Telefon',
+    'filter_email' => 'Email',
+    'filter_city' => 'Oraș',
+    'filter_country' => 'Țară',
+    'choose_country' => '-- alege țara --',
+    'filter_rating_min' => 'Rating minim',
+    'filter_rating_max' => 'Rating maxim',
+    'placeholder_name' => 'SC Cargo Rapid SRL',
+
+    'col_name' => 'Nume',
+    'col_cui' => 'CUI',
+    'col_contact' => 'Contact',
+    'col_phone' => 'Telefon',
+    'col_email' => 'Email',
+    'col_city' => 'Oraș',
+    'col_country' => 'Țară',
+    'col_rating' => 'Rating',
+    'empty' => 'Nu există transportatori înregistrați.',
+
+    'create_title' => 'Adaugă transportator',
+    'create_subtitle' => 'Completează profilul transportatorului',
+    'edit_title' => 'Editează transportator',
+
+    'form_name' => 'Nume transportator',
+    'form_cui' => 'CUI',
+    'form_registration_number' => 'Nr. înregistrare',
+    'form_contact_person' => 'Persoană de contact',
+    'form_phone' => 'Telefon',
+    'form_email' => 'Email',
+    'form_city' => 'Oraș',
+    'form_country' => 'Țară',
+    'form_rating' => 'Rating intern (0-5)',
+    'form_notes' => 'Note',
+
+    'save_button' => 'Salvează transportator',
+    'update_button' => 'Actualizează transportator',
+];

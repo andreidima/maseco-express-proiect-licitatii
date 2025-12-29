@@ -1,0 +1,55 @@
+<?php
+
+return [
+    'index_title' => 'Clienți',
+    'index_subtitle' => 'Portofoliu de clienți pentru licitațiile de transport mărfuri',
+    'add_button' => 'Adaugă client',
+    'badge_total' => 'Total clienți: <strong>:count</strong>',
+    'badge_with_contracts' => 'Cu contracte: <strong>:count</strong>',
+    'badge_in_auctions' => 'În licitații: <strong>:count</strong>',
+
+    'filter_name' => 'Nume client',
+    'filter_cui' => 'CUI',
+    'filter_registration_number' => 'Nr. înregistrare',
+    'filter_contact_person' => 'Persoană contact',
+    'filter_phone' => 'Telefon',
+    'filter_email' => 'Email',
+    'filter_city' => 'Oraș',
+    'filter_country' => 'Țară',
+    'choose_country' => '-- alege țara --',
+    'filter_payment_terms_min' => 'Termen plată minim (zile)',
+    'filter_payment_terms_max' => 'Termen plată maxim (zile)',
+    'placeholder_name' => 'Ex: SC Exemplu SRL',
+    'placeholder_contact_person' => 'Nume persoană',
+    'placeholder_city' => 'București',
+
+    'col_name' => 'Nume',
+    'col_cui' => 'CUI',
+    'col_contact_person' => 'Persoană contact',
+    'col_phone' => 'Telefon',
+    'col_email' => 'Email',
+    'col_city' => 'Oraș',
+    'col_country' => 'Țară',
+    'col_payment_terms' => 'Termen plată',
+    'days' => 'zile',
+
+    'empty' => 'Nu există clienți înregistrați.',
+
+    'create_title' => 'Adaugă client',
+    'create_subtitle' => 'Completează detaliile clientului',
+    'edit_title' => 'Editează client',
+
+    'form_name' => 'Denumire client',
+    'form_cui' => 'CUI',
+    'form_registration_number' => 'Nr. înregistrare',
+    'form_contact_person' => 'Persoană de contact',
+    'form_phone' => 'Telefon',
+    'form_email' => 'Email',
+    'form_city' => 'Oraș',
+    'form_country' => 'Țară',
+    'form_payment_terms' => 'Termen plată (zile)',
+    'form_notes' => 'Note',
+
+    'save_button' => 'Salvează client',
+    'update_button' => 'Actualizează client',
+];

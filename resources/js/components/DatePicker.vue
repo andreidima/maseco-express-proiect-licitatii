@@ -39,20 +39,26 @@ export default {
   },
   name: 'ControlOpen',
   data() {
+    const datepickerLocale = (typeof window !== 'undefined' && window.__i18n && window.__i18n.datepicker)
+      ? window.__i18n.datepicker
+      : null;
+
+    const formatLocale = datepickerLocale ? {
+      months: datepickerLocale.months,
+      monthsShort: datepickerLocale.monthsShort,
+      weekdays: datepickerLocale.weekdays,
+      weekdaysShort: datepickerLocale.weekdaysShort,
+      weekdaysMin: datepickerLocale.weekdaysMin,
+      firstDayOfWeek: datepickerLocale.firstDayOfWeek ?? 1,
+      firstWeekContainsDate: datepickerLocale.firstWeekContainsDate ?? 7,
+    } : {};
+
     return {
         time: null,
         dataNoua: '',
         // latimePrelucrata: latime.replace('"','')
         langObject: {
-            formatLocale: {
-                months: ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie', 'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'],
-                monthsShort: ['ian', 'feb', 'mar', 'apr', 'mai', 'iun', 'iul', 'aug', 'sep', 'oct', 'noi', 'dec'],
-                weekdays: ['duminică', 'luni', 'marți', 'miercuri', 'joi', 'vineri', 'sâmbătă'],
-                weekdaysShort: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm'],
-                weekdaysMin: ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sâ'],
-                firstDayOfWeek: 1,
-                firstWeekContainsDate: 7
-            },
+            formatLocale,
             // monthBeforeYear: false,
         },
         // langString: 'ro',

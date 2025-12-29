@@ -6,6 +6,8 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 use App\Http\Middleware\CheckUserActiv;
 use App\Http\Middleware\CheckUserRole;
+use App\Http\Middleware\EnsureParticipantHasCarrier;
+use App\Http\Middleware\SetLocale;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,9 +16,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->web(append: [
+            SetLocale::class,
+        ]);
+
         $middleware->alias([
             'checkUserActiv' => CheckUserActiv::class,
-            'checkUserRole' => CheckUserRole::class
+            'checkUserRole' => CheckUserRole::class,
+            'ensureParticipantHasCarrier' => EnsureParticipantHasCarrier::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

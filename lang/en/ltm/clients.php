@@ -1,0 +1,55 @@
+<?php
+
+return [
+    'index_title' => 'Clients',
+    'index_subtitle' => 'Client portfolio for freight transport auctions',
+    'add_button' => 'Add client',
+    'badge_total' => 'Total clients: <strong>:count</strong>',
+    'badge_with_contracts' => 'With contracts: <strong>:count</strong>',
+    'badge_in_auctions' => 'In auctions: <strong>:count</strong>',
+
+    'filter_name' => 'Client name',
+    'filter_cui' => 'VAT ID',
+    'filter_registration_number' => 'Registration number',
+    'filter_contact_person' => 'Contact person',
+    'filter_phone' => 'Phone',
+    'filter_email' => 'Email',
+    'filter_city' => 'City',
+    'filter_country' => 'Country',
+    'choose_country' => '-- choose country --',
+    'filter_payment_terms_min' => 'Payment terms min (days)',
+    'filter_payment_terms_max' => 'Payment terms max (days)',
+    'placeholder_name' => 'e.g. Example Ltd',
+    'placeholder_contact_person' => 'Person name',
+    'placeholder_city' => 'Bucharest',
+
+    'col_name' => 'Name',
+    'col_cui' => 'VAT ID',
+    'col_contact_person' => 'Contact person',
+    'col_phone' => 'Phone',
+    'col_email' => 'Email',
+    'col_city' => 'City',
+    'col_country' => 'Country',
+    'col_payment_terms' => 'Payment terms',
+    'days' => 'days',
+
+    'empty' => 'No clients registered.',
+
+    'create_title' => 'Add client',
+    'create_subtitle' => 'Fill in client details',
+    'edit_title' => 'Edit client',
+
+    'form_name' => 'Client name',
+    'form_cui' => 'VAT ID',
+    'form_registration_number' => 'Registration number',
+    'form_contact_person' => 'Contact person',
+    'form_phone' => 'Phone',
+    'form_email' => 'Email',
+    'form_city' => 'City',
+    'form_country' => 'Country',
+    'form_payment_terms' => 'Payment terms (days)',
+    'form_notes' => 'Notes',
+
+    'save_button' => 'Save client',
+    'update_button' => 'Update client',
+];

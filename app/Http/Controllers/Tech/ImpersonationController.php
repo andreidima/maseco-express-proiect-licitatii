@@ -51,11 +51,11 @@ class ImpersonationController extends Controller
         }
 
         if ($user->id === $currentUser->id) {
-            return back()->withErrors('Nu poți impersona propriul cont.');
+            return back()->withErrors(__('errors.cannot_impersonate_own_account'));
         }
 
         if (!$user->activ) {
-            return back()->withErrors('Nu poți impersona un cont inactiv.');
+            return back()->withErrors(__('errors.cannot_impersonate_inactive_account'));
         }
 
         if (!$request->session()->has('impersonator_id')) {
@@ -65,10 +65,9 @@ class ImpersonationController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('acasa')->with(
-            'status',
-            'Acum impersonați contul <strong>' . e($user->name) . '</strong>.'
-        );
+        return redirect()->route('acasa')->with('status', __('flash.impersonation_started', [
+            'name' => e($user->name),
+        ]));
     }
 
     public function stop(Request $request): RedirectResponse
@@ -84,11 +83,11 @@ class ImpersonationController extends Controller
 
         if ($originalUser) {
             Auth::login($originalUser);
-            $message = 'Ați revenit la contul <strong>' . e($originalUser->name) . '</strong>.';
+            $message = __('flash.impersonation_stopped', ['name' => e($originalUser->name)]);
         } else {
             Auth::logout();
             $displayName = $originalName ? ' (' . e($originalName) . ')' : '';
-            $message = 'Sesiunea de impersonare a fost oprită, dar contul inițial' . $displayName . ' nu a mai fost găsit.';
+            $message = __('flash.impersonation_stopped_original_missing', ['name' => $displayName]);
         }
 
         return redirect()->route('acasa')->with('status', $message);

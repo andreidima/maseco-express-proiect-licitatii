@@ -8,7 +8,7 @@
                 <div class="border border-secondary p-2 culoare2" style="border-radius: 40px 40px 0px 0px;">
                     <span class="badge text-light fs-5">
                         <i class="fa-solid fa-user-{{ isset($user) ? 'edit' : 'plus' }} me-1"></i>
-                        {{ isset($user) ? 'Editează Utilizator' : 'Adaugă Utilizator' }}
+                        {{ isset($user) ? __('users.save_edit_title') : __('users.save_add_title') }}
                     </span>
                 </div>
 
@@ -27,7 +27,7 @@
 
                         @include ('users.form', [
                             'user' => $user ?? null,
-                            'buttonText' => isset($user) ? 'Salvează modificările' : 'Adaugă Utilizator',
+                            'buttonText' => isset($user) ? __('users.save_changes') : __('users.save_add_button'),
                         ])
                     </form>
                 </div>

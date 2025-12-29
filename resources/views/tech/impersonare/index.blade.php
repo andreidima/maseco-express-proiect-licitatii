@@ -5,7 +5,7 @@
     <div class="row card-header align-items-center" style="border-radius: 40px 40px 0px 0px;">
         <div class="col-lg-4">
             <span class="badge culoare1 fs-5">
-                <i class="fa-solid fa-user-secret"></i> Impersonare utilizatori
+                <i class="fa-solid fa-user-secret"></i> {{ __('tech/impersonation.title') }}
             </span>
         </div>
 
@@ -13,19 +13,19 @@
             <form class="needs-validation" novalidate method="GET" action="{{ url()->current() }}">
                 <div class="row mb-1 custom-search-form justify-content-end">
                     <div class="col-lg-4">
-                        <input type="text" class="form-control rounded-3" id="searchNume" name="searchNume" placeholder="Nume" value="{{ $searchNume }}">
+                        <input type="text" class="form-control rounded-3" id="searchNume" name="searchNume" placeholder="{{ __('tech/impersonation.search_name') }}" value="{{ $searchNume }}">
                     </div>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control rounded-3" id="searchTelefon" name="searchTelefon" placeholder="Telefon" value="{{ $searchTelefon }}">
+                        <input type="text" class="form-control rounded-3" id="searchTelefon" name="searchTelefon" placeholder="{{ __('tech/impersonation.search_phone') }}" value="{{ $searchTelefon }}">
                     </div>
                     <div class="col-lg-2 d-grid">
                         <button class="btn btn-sm btn-primary text-white border border-dark rounded-3" type="submit">
-                            <i class="fas fa-search text-white me-1"></i>Caută
+                            <i class="fas fa-search text-white me-1"></i>{{ __('tech/impersonation.search') }}
                         </button>
                     </div>
                     <div class="col-lg-2 d-grid">
                         <a class="btn btn-sm btn-secondary text-white border border-dark rounded-3" href="{{ url()->current() }}" role="button">
-                            <i class="far fa-trash-alt text-white me-1"></i>Resetează
+                            <i class="far fa-trash-alt text-white me-1"></i>{{ __('tech/impersonation.reset') }}
                         </a>
                     </div>
                 </div>
@@ -38,20 +38,20 @@
 
         <div class="alert alert-info mx-3" role="status">
             <i class="fa-solid fa-circle-info me-1"></i>
-            Selectează un utilizator pentru a-i prelua drepturile. Vei putea reveni la contul tău din meniul de autentificare.
+            {{ __('tech/impersonation.info') }}
         </div>
 
         <div class="table-responsive rounded">
-            <table class="table table-striped table-hover rounded" aria-label="Tabela impersonare utilizatori">
+            <table class="table table-striped table-hover rounded" aria-label="{{ __('tech/impersonation.table_aria') }}">
                 <thead class="text-white rounded">
                     <tr class="thead-danger" style="padding:2rem">
                         <th scope="col" class="text-white culoare2" width="5%"><i class="fa-solid fa-hashtag"></i></th>
-                        <th scope="col" class="text-white culoare2" width="25%"><i class="fa-solid fa-user me-1"></i> Nume</th>
-                        <th scope="col" class="text-white culoare2" width="15%"><i class="fa-solid fa-phone me-1"></i> Telefon</th>
-                        <th scope="col" class="text-white culoare2" width="25%"><i class="fa-solid fa-envelope me-1"></i> Email</th>
-                        <th scope="col" class="text-white culoare2" width="10%"><i class="fa-solid fa-user-tag me-1"></i> Rol</th>
-                        <th scope="col" class="text-white culoare2" width="10%"><i class="fa-solid fa-toggle-on me-1"></i> Stare cont</th>
-                        <th scope="col" class="text-white culoare2 text-end" width="10%"><i class="fa-solid fa-user-gear me-1"></i> Acțiuni</th>
+                        <th scope="col" class="text-white culoare2" width="25%"><i class="fa-solid fa-user me-1"></i> {{ __('tech/impersonation.col_name') }}</th>
+                        <th scope="col" class="text-white culoare2" width="15%"><i class="fa-solid fa-phone me-1"></i> {{ __('tech/impersonation.col_phone') }}</th>
+                        <th scope="col" class="text-white culoare2" width="25%"><i class="fa-solid fa-envelope me-1"></i> {{ __('tech/impersonation.col_email') }}</th>
+                        <th scope="col" class="text-white culoare2" width="10%"><i class="fa-solid fa-user-tag me-1"></i> {{ __('tech/impersonation.col_role') }}</th>
+                        <th scope="col" class="text-white culoare2" width="10%"><i class="fa-solid fa-toggle-on me-1"></i> {{ __('tech/impersonation.col_account_status') }}</th>
+                        <th scope="col" class="text-white culoare2 text-end" width="10%"><i class="fa-solid fa-user-gear me-1"></i> {{ __('tech/impersonation.col_actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,21 +64,21 @@
                             <td>{{ $user->role }}</td>
                             <td>
                                 @if ($user->activ == 0)
-                                    <span class="text-danger">Închis</span>
+                                    <span class="text-danger">{{ __('tech/impersonation.status_closed') }}</span>
                                 @else
-                                    <span class="text-success">Deschis</span>
+                                    <span class="text-success">{{ __('tech/impersonation.status_open') }}</span>
                                 @endif
                             </td>
                             <td class="text-end">
                                 @if ($user->id === $currentUserId)
-                                    <span class="badge bg-secondary"><i class="fa-solid fa-circle-check me-1"></i> Cont curent</span>
+                                    <span class="badge bg-secondary"><i class="fa-solid fa-circle-check me-1"></i> {{ __('tech/impersonation.current_account') }}</span>
                                 @elseif ($user->activ == 0)
-                                    <span class="badge bg-secondary"><i class="fa-solid fa-ban me-1"></i> Inactiv</span>
+                                    <span class="badge bg-secondary"><i class="fa-solid fa-ban me-1"></i> {{ __('tech/impersonation.inactive') }}</span>
                                 @else
                                     <form method="POST" action="{{ route('tech.impersonation.start', $user) }}" class="d-inline">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-outline-primary">
-                                            <i class="fa-solid fa-user-secret me-1"></i> Impersonează
+                                            <i class="fa-solid fa-user-secret me-1"></i> {{ __('tech/impersonation.impersonate') }}
                                         </button>
                                     </form>
                                 @endif
@@ -88,9 +88,9 @@
                         <tr>
                             <td colspan="7" class="text-center text-muted py-5">
                                 <i class="fa-solid fa-users-slash fa-2x mb-3 d-block"></i>
-                                <p class="mb-0">Nu s-au găsit utilizatori în baza de date.</p>
+                                <p class="mb-0">{{ __('tech/impersonation.empty') }}</p>
                                 @if ($searchNume || $searchTelefon)
-                                    <p class="small mb-0 mt-2">Încercați să modificați criteriile de căutare.</p>
+                                    <p class="small mb-0 mt-2">{{ __('tech/impersonation.empty_hint') }}</p>
                                 @endif
                             </td>
                         </tr>

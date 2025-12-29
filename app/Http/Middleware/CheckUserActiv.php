@@ -19,7 +19,7 @@ class CheckUserActiv
     {
         if (Auth::check() && Auth::user()->activ != 1) {
             Auth::logout();
-            return redirect()->route('login')->with('error', 'Contul tău este suspendat. Contactează administratorul.');
+            return redirect()->route('login')->with('error', __('flash.account_suspended'));
         }
 
         return $next($request);

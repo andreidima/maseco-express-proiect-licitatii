@@ -113,7 +113,7 @@ class MigrationController extends Controller
         $request->validate([
             'confirm_run' => ['accepted'],
         ], [
-            'confirm_run.accepted' => 'Confirmă că ai înțeles riscurile pentru a continua.',
+            'confirm_run.accepted' => __('tech/migrations.validation_confirm_run'),
         ]);
 
         try {
@@ -125,7 +125,7 @@ class MigrationController extends Controller
                 ->route('tech.migrations.index')
                 ->with('migrationStatus', [
                     'type' => 'success',
-                    'message' => 'Migrațiile au fost executate.',
+                    'message' => __('tech/migrations.status_ran_success'),
                     'output' => $output,
                 ]);
         } catch (Throwable $exception) {
@@ -133,7 +133,7 @@ class MigrationController extends Controller
                 ->route('tech.migrations.index')
                 ->with('migrationStatus', [
                     'type' => 'danger',
-                    'message' => 'A apărut o eroare la rularea migrațiilor: ' . $exception->getMessage(),
+                    'message' => __('tech/migrations.status_run_error', ['message' => $exception->getMessage()]),
                 ]);
         }
     }
@@ -151,7 +151,7 @@ class MigrationController extends Controller
                     ->route('tech.migrations.index')
                     ->with('migrationStatus', [
                         'type' => 'warning',
-                        'message' => 'Nu există tabelul "migrations". Nicio migrație nu poate fi anulată.',
+                        'message' => __('tech/migrations.status_no_migrations_table'),
                     ]);
             }
 
@@ -163,7 +163,7 @@ class MigrationController extends Controller
                     ->route('tech.migrations.index')
                     ->with('migrationStatus', [
                         'type' => 'danger',
-                        'message' => 'Fișierul pentru migrația selectată nu a fost găsit.',
+                        'message' => __('tech/migrations.status_migration_file_missing'),
                     ]);
             }
 
@@ -174,7 +174,7 @@ class MigrationController extends Controller
                     ->route('tech.migrations.index')
                     ->with('migrationStatus', [
                         'type' => 'warning',
-                        'message' => 'Migrația selectată nu apare ca fiind rulată deja.',
+                        'message' => __('tech/migrations.status_migration_not_ran'),
                     ]);
             }
 
@@ -199,7 +199,7 @@ class MigrationController extends Controller
                     ->route('tech.migrations.index')
                     ->with('migrationStatus', [
                         'type' => 'danger',
-                        'message' => 'Comanda de rollback a returnat o eroare. Verifică jurnalul pentru detalii.',
+                        'message' => __('tech/migrations.status_rollback_error'),
                         'output' => $output,
                     ]);
             }
@@ -208,7 +208,7 @@ class MigrationController extends Controller
                 ->route('tech.migrations.index')
                 ->with('migrationStatus', [
                     'type' => 'success',
-                    'message' => 'Migrația a fost rulată înapoi cu succes.',
+                    'message' => __('tech/migrations.status_rollback_success'),
                     'output' => $output,
                 ]);
         } catch (Throwable $exception) {
@@ -216,7 +216,7 @@ class MigrationController extends Controller
                 ->route('tech.migrations.index')
                 ->with('migrationStatus', [
                     'type' => 'danger',
-                    'message' => 'Anularea migrației a eșuat: ' . $exception->getMessage(),
+                    'message' => __('tech/migrations.status_rollback_failed', ['message' => $exception->getMessage()]),
                 ]);
         }
     }

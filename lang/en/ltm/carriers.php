@@ -1,0 +1,51 @@
+<?php
+
+return [
+    'index_title' => 'Carriers',
+    'index_subtitle' => 'Carrier and subcontractor network',
+    'add_button' => 'Add carrier',
+    'badge_total' => 'Total carriers: <strong>:count</strong>',
+    'badge_with_contracts' => 'With contracts: <strong>:count</strong>',
+    'badge_with_bids' => 'With bids: <strong>:count</strong>',
+
+    'filter_name' => 'Name',
+    'filter_cui' => 'VAT ID',
+    'filter_registration_number' => 'Registration number',
+    'filter_contact_person' => 'Contact person',
+    'filter_phone' => 'Phone',
+    'filter_email' => 'Email',
+    'filter_city' => 'City',
+    'filter_country' => 'Country',
+    'choose_country' => '-- choose country --',
+    'filter_rating_min' => 'Rating min',
+    'filter_rating_max' => 'Rating max',
+    'placeholder_name' => 'Example Logistics Ltd',
+
+    'col_name' => 'Name',
+    'col_cui' => 'VAT ID',
+    'col_contact' => 'Contact',
+    'col_phone' => 'Phone',
+    'col_email' => 'Email',
+    'col_city' => 'City',
+    'col_country' => 'Country',
+    'col_rating' => 'Rating',
+    'empty' => 'No carriers registered.',
+
+    'create_title' => 'Add carrier',
+    'create_subtitle' => 'Fill in carrier profile',
+    'edit_title' => 'Edit carrier',
+
+    'form_name' => 'Carrier name',
+    'form_cui' => 'VAT ID',
+    'form_registration_number' => 'Registration number',
+    'form_contact_person' => 'Contact person',
+    'form_phone' => 'Phone',
+    'form_email' => 'Email',
+    'form_city' => 'City',
+    'form_country' => 'Country',
+    'form_rating' => 'Internal rating (0-5)',
+    'form_notes' => 'Notes',
+
+    'save_button' => 'Save carrier',
+    'update_button' => 'Update carrier',
+];

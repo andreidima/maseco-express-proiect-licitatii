@@ -76,6 +76,6 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
-        return redirect('/login')->with('status', 'Contul ' . $user->name . ' a fost creat cu succes! Pentru a vă putea autentifica în aplicație, este necesar să contactați administratorul pentru a activă contul.');
+        return redirect('/login')->with('status', __('flash.account_created_contact_admin', ['name' => e($user->name)]));
     }
 }

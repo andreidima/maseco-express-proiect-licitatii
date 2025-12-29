@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\Insights\InsightsService;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(InsightsService $insights)
     {
-        return view('home');
+        if (Auth::user()?->role === 'Participant licitatii') {
+            $stats = $insights->participantDashboard(Auth::id(), Auth::user()?->carrier_id);
+
+            return view('participant.home', compact('stats'));
+        }
+
+        $stats = $insights->staffDashboard();
+
+        return view('home', compact('stats'));
     }
 }

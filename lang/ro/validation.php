@@ -128,10 +128,12 @@ return [
     'url'                  => 'Câmpul :attribute nu este un URL valid.',
     'uuid'                 => 'Acesta :attribute trebuie să fie un cod UUID valid.',
     'custom'               => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-    ],
+          'password' => [
+              'required' => 'Câmpul parola este obligatoriu.',
+              'min' => 'Parola trebuie să aibă minim :min caractere.',
+              'max' => 'Câmpul parola nu poate conține mai mult de :max de caractere.',
+          ],
+      ],
 
     'values' => [
         // or whatever fields you wanna translate
