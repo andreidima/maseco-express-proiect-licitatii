@@ -33,7 +33,7 @@ class InsightsService
         $carrierBidQuery = Bid::query()->where('carrier_id', $carrierId);
 
         $myBidStatusDistribution = $carrierId
-            ? $carrierBidQuery
+            ? (clone $carrierBidQuery)
                 ->select('status', DB::raw('COUNT(*) as total'))
                 ->groupBy('status')
                 ->orderByDesc('total')
@@ -54,7 +54,7 @@ class InsightsService
 
         return [
             'participantOpenAuctions' => $openAuctions,
-            'participantCarrierBidCount' => $carrierId ? $carrierBidQuery->count() : 0,
+            'participantCarrierBidCount' => $carrierId ? (clone $carrierBidQuery)->count() : 0,
             'participantSupportThreadCount' => SupportThread::query()->where('participant_user_id', $participantUserId)->count(),
             'participantMyBidStatusDistribution' => $myBidStatusDistribution,
             'participantMySupportStatusDistribution' => $mySupportStatusDistribution,
@@ -301,6 +301,7 @@ class InsightsService
             ->get()
             ->map(function ($row) {
                 $row->label = $row->label ? 'active' : 'inactive';
+
                 return $row;
             });
 

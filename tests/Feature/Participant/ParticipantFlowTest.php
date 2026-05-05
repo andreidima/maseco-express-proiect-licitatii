@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Participant;
 
+use App\Models\Currency;
 use App\Models\Ltm\Auction;
 use App\Models\Ltm\Bid;
 use App\Models\Ltm\Carrier;
@@ -41,9 +42,71 @@ class ParticipantFlowTest extends TestCase
             ->assertRedirect('/acasa');
     }
 
+    public function test_participant_dashboard_counts_own_offers_with_status_distribution(): void
+    {
+        $carrier = Carrier::create(['name' => 'Carrier A']);
+        $otherCarrier = Carrier::create(['name' => 'Carrier B']);
+        $user = User::factory()->create([
+            'role' => 'Participant licitatii',
+            'activ' => 1,
+            'carrier_id' => $carrier->id,
+        ]);
+
+        $auction = Auction::create([
+            'auction_number' => 'LTM-OP-1',
+            'title' => 'Open',
+            'status' => 'deschisÄƒ',
+        ]);
+        $lotA = Lot::create(['auction_id' => $auction->id, 'code' => 'LOT-A']);
+        $lotB = Lot::create(['auction_id' => $auction->id, 'code' => 'LOT-B']);
+        $lotC = Lot::create(['auction_id' => $auction->id, 'code' => 'LOT-C']);
+        $lotD = Lot::create(['auction_id' => $auction->id, 'code' => 'LOT-D']);
+
+        Bid::create([
+            'auction_id' => $auction->id,
+            'lot_id' => $lotA->id,
+            'carrier_id' => $carrier->id,
+            'status' => 'trimisa',
+        ]);
+        Bid::create([
+            'auction_id' => $auction->id,
+            'lot_id' => $lotB->id,
+            'carrier_id' => $carrier->id,
+            'status' => 'trimisa',
+        ]);
+        Bid::create([
+            'auction_id' => $auction->id,
+            'lot_id' => $lotC->id,
+            'carrier_id' => $carrier->id,
+            'status' => 'acceptata',
+        ]);
+        Bid::create([
+            'auction_id' => $auction->id,
+            'lot_id' => $lotD->id,
+            'carrier_id' => $otherCarrier->id,
+            'status' => 'trimisa',
+        ]);
+
+        $this->actingAs($user)
+            ->get('/acasa')
+            ->assertOk()
+            ->assertViewIs('participant.home')
+            ->assertViewHas('stats', function (array $stats) {
+                $statusTotals = collect($stats['participantMyBidStatusDistribution'])
+                    ->pluck('total', 'status')
+                    ->map(fn ($total) => (int) $total)
+                    ->all();
+
+                return ($stats['participantCarrierBidCount'] ?? null) === 3
+                    && ($statusTotals['trimisa'] ?? null) === 2
+                    && ($statusTotals['acceptata'] ?? null) === 1;
+            });
+    }
+
     public function test_participant_can_create_offer_only_for_open_auctions(): void
     {
         $carrier = Carrier::create(['name' => 'Carrier A']);
+        $currency = Currency::where('code', 'EUR')->firstOrFail();
         $user = User::factory()->create([
             'role' => 'Participant licitatii',
             'activ' => 1,
@@ -64,6 +127,7 @@ class ParticipantFlowTest extends TestCase
             ->post('/participant/oferte', [
                 'lot_id' => $closedLot->id,
                 'price_per_trip_eur' => 100,
+                'currency_id' => $currency->id,
             ])
             ->assertStatus(403);
 
@@ -81,6 +145,7 @@ class ParticipantFlowTest extends TestCase
             ->post('/participant/oferte', [
                 'lot_id' => $openLot->id,
                 'price_per_trip_eur' => 123.45,
+                'currency_id' => $currency->id,
                 'payment_terms_days' => 30,
             ])
             ->assertRedirect('/participant/oferte');
@@ -131,4 +196,3 @@ class ParticipantFlowTest extends TestCase
         $response->assertDontSee('LOT-B');
     }
 }
-
